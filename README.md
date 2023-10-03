@@ -13,11 +13,12 @@ Hybla is a network optimization script designed to enhance the performance and e
 <br>
 In summary, Hybla is a powerful network optimization script that enhances the performance and functionality of communication networks under diverse conditions.
 <br>
+
 # Just use the comment below to install
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/MrAminiNezhad/tcp_optimizer_hybla/main/hybla.sh)
 ```
-If the above command does not work for you, use the following command
+If the above command does not work for you, use the following command:
 ```
 wget -N --no-check-certificate https://raw.githubusercontent.com/MrAminiNezhad/tcp_optimizer_hybla/main/hybla.sh && chmod +x hybla.sh && bash hybla.sh
 ```
