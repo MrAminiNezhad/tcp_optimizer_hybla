@@ -259,8 +259,14 @@ sysctl_config() {
     echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
 }
+
 
 
 install_kernel() {
