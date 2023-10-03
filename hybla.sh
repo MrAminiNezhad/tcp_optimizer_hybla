@@ -4,7 +4,7 @@
 #
 # System Required:  CentOS 6+, Debian8+, Ubuntu16+
 #
-# Copyright (C) 2023
+# Copyright (C) 2023 Mr.Amini Nezhad
 
 
 cur_dir="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
@@ -256,8 +256,12 @@ sysctl_config() {
     sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
     echo "net.core.default_qdisc = fq" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
 }
+
 
 install_kernel() {
     case "$(_os)" in
