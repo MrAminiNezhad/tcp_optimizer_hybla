@@ -346,7 +346,7 @@ install_Hybla() {
     fi
     if check_kernel_version; then
         echo
-        _info "The kernel version is greater than 4.9, directly setting TCP Hybla..."
+        _info "The kernel version is greater than 5.4.0, directly setting TCP Hybla..."
         sysctl_config
         _info "Setting TCP Hybla completed..."
         exit 0
