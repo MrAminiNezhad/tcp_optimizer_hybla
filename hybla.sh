@@ -264,14 +264,18 @@ sysctl_config() {
     echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_wmem = 4096 16384 4194304" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_rmem = 4096 87380 4194304" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_wmem = 4096 16384 4194304" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_rmem = 4096 87380 4194304" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
 }
+
 
 
 install_kernel() {
