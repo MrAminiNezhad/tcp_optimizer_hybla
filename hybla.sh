@@ -272,8 +272,17 @@ sysctl_config() {
     echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
+    echo "net.core.netdev_max_backlog = 250000" >> /etc/sysctl.conf
+    echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
+    echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
+    echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
+    echo "net.core.wmem_max = 4194304" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
 }
+
 
 
 
