@@ -14,9 +14,10 @@ Hybla یک اسکریپت بهینه سازی شبکه است که برای اف
 <br><br>
 به طور خلاصه، Hybla یک اسکریپت بهینه سازی شبکه قدرتمند است که عملکرد و عملکرد شبکه های ارتباطی را در شرایط مختلف افزایش می دهد.
 <br>
+
 # آموزش نصب تصویری (با تشکر از <a href="https://www.youtube.com/@aminiyt1">AminiYT </a> )
 
-[![Hybla Tcp](https://i.ibb.co/tKNjfxt/Capture.jpg)](https://www.youtube.com/watch?v=W2uEzepklR8 "آموزش تصویری Hybla")
+[![Video](https://i.ibb.co/tKNjfxt/Capture.jpg)](https://www.youtube.com/watch?v=W2uEzepklR8)
 
 # جهت نصب سریع کافیست از دستور زیر استفاده بکنید
 ```
