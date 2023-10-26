@@ -21,7 +21,7 @@ In summary, Hybla is a powerful network optimization script that enhances the pe
 
 # Video installation tutorial (thanks to <a href="https://www.youtube.com/@aminiyt1">AminiYT </a> )
 
-[![Little red riding hood](https://i.ibb.co/tKNjfxt/Capture.jpg)](https://www.youtube.com/watch?v=W2uEzepklR8 "Little red riding hood - Click to Watch!")
+[![Hybla Linux ](https://i.ibb.co/tKNjfxt/Capture.jpg)](https://www.youtube.com/watch?v=W2uEzepklR8 "Hybla Linux - Click to Watch!")
 
 # Just use the comment below to install
 ```
