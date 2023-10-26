@@ -17,7 +17,7 @@ Hybla یک اسکریپت بهینه سازی شبکه است که برای اف
 
 # آموزش نصب تصویری (با تشکر از <a href="https://www.youtube.com/@aminiyt1">AminiYT </a> )
 
-[![Video](https://i.ibb.co/tKNjfxt/Capture.jpg)](https://www.youtube.com/watch?v=W2uEzepklR8)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W2uEzepklR8?si=pHPglO4hPCYX1Twq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 # جهت نصب سریع کافیست از دستور زیر استفاده بکنید
 ```
