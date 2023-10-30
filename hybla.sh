@@ -6,7 +6,6 @@
 #
 # Copyright (C) 2023 Mr.Amini Nezhad
 
-
 cur_dir="$(cd -P -- "$(dirname -- "$0")" && pwd -P)"
 
 _red() {
@@ -282,8 +281,6 @@ sysctl_config() {
     echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
     sysctl -p >/dev/null 2>&1
 }
-
-
 
 
 install_kernel() {
