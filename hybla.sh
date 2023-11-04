@@ -144,8 +144,6 @@ sysctl_config() {
     echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_wmem = 4096 16384 4194304" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_rmem = 4096 87380 4194304" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
@@ -154,20 +152,24 @@ sysctl_config() {
     echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
-    echo "net.core.netdev_max_backlog = 250000" >> /etc/sysctl.conf
-    echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
-    echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
-    echo "net.core.rmem_max = 4194304" >> /etc/sysctl.conf
-    echo "net.core.wmem_max = 4194304" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_max_syn_backlog = 8096" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_max_orphans = 3276800" >> /etc/sysctl.conf
+    echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_max_orphans = 3276800" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_autocorking = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_tw_reuse = 1" >> /etc/sysctl.conf
-    echo "*               soft    nofile           1000000
+    echo "fs.file-max = 1000000" >> /etc/sysctl.conf
+    echo "fs.inotify.max_user_instances = 8192" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_tw_reuse = 1" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_rmem = 16384 262144 8388608" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_wmem = 32768 524288 16777216" >> /etc/sysctl.conf
+	echo "net.core.somaxconn = 8192" >> /etc/sysctl.conf
+	echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
+	echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
+	echo "net.core.rmem_max = 16777216" >> /etc/sysctl.conf
+    echo "net.core.wmem_max = 16777216" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
+	echo "*               soft    nofile           1000000
 *               hard    nofile          1000000">/etc/security/limits.conf
     echo "ulimit -SHn 1000000">>/etc/profile
     sysctl -p >/dev/null 2>&1
