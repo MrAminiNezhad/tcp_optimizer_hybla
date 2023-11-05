@@ -133,32 +133,30 @@ install_Hybla() {
     fi
 }
 sysctl_config() {
-    sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
-    sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
-    echo "net.core.default_qdisc = fq_codel" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
+    	echo "net.core.default_qdisc = fq_codel" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
 	echo "net.ipv4.ip_no_pmtu_disc = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
-    echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
+	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_max_orphans = 3276800" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_autocorking = 1" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
-    echo "fs.file-max = 1000000" >> /etc/sysctl.conf
-    echo "fs.inotify.max_user_instances = 8192" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_autocorking = 1" >> /etc/sysctl.conf
+    	echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
+    	echo "fs.file-max = 1000000" >> /etc/sysctl.conf
+    	echo "fs.inotify.max_user_instances = 8192" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_tw_reuse = 1" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_rmem = 16384 262144 8388608" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_wmem = 32768 524288 16777216" >> /etc/sysctl.conf
@@ -166,25 +164,56 @@ sysctl_config() {
 	echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
 	echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
 	echo "net.core.rmem_max = 2097152" >> /etc/sysctl.conf
-    echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
+    	echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
+	echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
-	echo "*               soft    nofile           1000000
-*               hard    nofile          1000000">/etc/security/limits.conf
-    echo "ulimit -SHn 1000000">>/etc/profile
-    sysctl -p >/dev/null 2>&1
-}
+	echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
+	echo "ulimit -SHn 1000000">>/etc/profile
+	sysctl -p >/dev/null 2>&1
+	sudo sysctl --system >/dev/null 2>&1
+ }
 
 cloner() {
-    echo -n > /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+	sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.ip_no_pmtu_disc/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_frto/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_low_latency/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_mtu_probing/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_no_metrics_save/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_window_scaling/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_sack/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_timestamps/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_delack_min/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_fastopen/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_reordering/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_early_retrans/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_ssthresh/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_frto_response/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_abort_on_overflow/d' /etc/sysctl.conf
+	sed -i '/net.core.rmem_default/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_max_orphans/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_autocorking/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_tw_recycle/d' /etc/sysctl.conf
+	sed -i '/fs.file-max/d' /etc/sysctl.conf
+	sed -i '/fs.inotify.max_user_instances/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_tw_reuse/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_rmem/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_wmem/d' /etc/sysctl.conf
+	sed -i '/net.core.somaxconn/d' /etc/sysctl.conf
+	sed -i '/net.core.rmem_max/d' /etc/sysctl.conf
+	sed -i '/net.core.wmem_max/d' /etc/sysctl.conf
+	sed -i '/net.core.wmem_default/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_max_tw_buckets/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_max_syn_backlog/d' /etc/sysctl.conf
+	sed -i '/net.core.netdev_max_backlog/d' /etc/sysctl.conf
+	sed -i '/net.ipv4.tcp_slow_start_after_idle/d' /etc/sysctl.conf
 
-    sudo sysctl -p
-    sudo sysctl --system
-
-    sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=/#GRUB_CMDLINE_LINUX_DEFAULT=/' /etc/default/grub
-}
+	sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+	sudo update-grub
+	}
 
 display_menu
 cloner
