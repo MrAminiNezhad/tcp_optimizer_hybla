@@ -119,44 +119,35 @@ install_Hybla() {
         cd .. && rm -rf Hybla
     fi
 
-	clear
-	echo "The kernel version is greater than 6.5.7, directly setting TCP Hybla..."
-	echo "Setting TCP Hybla completed"
-	echo "TCP Hybla has been successfully installed and configured."
-	echo "enjoy it..."
-    read -p "It is recommended to reboot the server for better performance (recommended). Do you want to restart now? [Y/n] :" yn
-    [ -z "${yn}" ] && yn="y"
-    if [[ $yn == [Yy] ]]; then
-        echo -e "good choice ,VPS is rebooting..."
-	sleep 2
-        reboot
-    fi
 }
 sysctl_config() {
-    	echo "net.core.default_qdisc = fq_codel" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
+    echo -e "#Hybla optimize network traffic\n#Github: https://github.com/MrAminiNezhad/\n" > /etc/sysctl.conf
+    sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
+    sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+    echo "net.core.default_qdisc = fq_codel" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
 	echo "net.ipv4.ip_no_pmtu_disc = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
-	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_window_scaling = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_sack = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_frto_response = 2" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_abort_on_overflow = 1" >> /etc/sysctl.conf
+    echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_max_orphans = 3276800" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_autocorking = 1" >> /etc/sysctl.conf
-    	echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
-    	echo "fs.file-max = 1000000" >> /etc/sysctl.conf
-    	echo "fs.inotify.max_user_instances = 8192" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_autocorking = 1" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_tw_recycle = 1" >> /etc/sysctl.conf
+    echo "fs.file-max = 1000000" >> /etc/sysctl.conf
+    echo "fs.inotify.max_user_instances = 8192" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_tw_reuse = 1" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_rmem = 16384 262144 8388608" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_wmem = 32768 524288 16777216" >> /etc/sysctl.conf
@@ -164,18 +155,19 @@ sysctl_config() {
 	echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
 	echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
 	echo "net.core.rmem_max = 2097152" >> /etc/sysctl.conf
-    	echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
+    echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
+    echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
-	echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
-	echo "ulimit -SHn 1000000">>/etc/profile
-	sudo sysctl -p >/dev/null 2>&1
-	sudo sysctl --system >/dev/null 2>&1
- }
+    echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
+    echo "ulimit -SHn 1000000">>/etc/profile
+    sudo sysctl -p
+    sudo sysctl --system
+}
 
 cloner() {
-	sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
+    sed -i '/#Hybla optimize network traffic/,/#Github: https:\/\/github.com\/MrAminiNezhad\//d' /etc/sysctl.conf
+    sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
 	sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
 	sed -i '/net.ipv4.ip_no_pmtu_disc/d' /etc/sysctl.conf
 	sed -i '/net.ipv4.tcp_ecn/d' /etc/sysctl.conf
@@ -211,9 +203,29 @@ cloner() {
 	sed -i '/net.core.netdev_max_backlog/d' /etc/sysctl.conf
 	sed -i '/net.ipv4.tcp_slow_start_after_idle/d' /etc/sysctl.conf
 
-	sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
+    sudo sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/' /etc/default/grub
 	sudo update-grub
 	}
+
+save_config() {
+    sudo sysctl -p
+    sudo sysctl --system
+}
+
+reboot_server() {
+	clear
+	echo "The kernel version is greater than 6.5.7, directly setting TCP Hybla..."
+	echo "Setting TCP Hybla completed"
+	echo "TCP Hybla has been successfully installed and configured."
+	echo "enjoy it..."
+    read -p "It is recommended to reboot the server for better performance (recommended). Do you want to restart now? [Y/n] :" yn
+    [ -z "${yn}" ] && yn="y"
+    if [[ $yn == [Yy] ]]; then
+        echo -e "good choice ,VPS is rebooting..."
+		sleep 3
+        reboot
+    fi
+}
 
 display_menu
 cloner
@@ -221,3 +233,5 @@ check_sys
 check_version
 install_Hybla
 sysctl_config
+save_config
+reboot_server
