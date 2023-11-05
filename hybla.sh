@@ -170,7 +170,7 @@ sysctl_config() {
 	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
 	echo "ulimit -SHn 1000000">>/etc/profile
-	sysctl -p >/dev/null 2>&1
+	sudo sysctl -p >/dev/null 2>&1
 	sudo sysctl --system >/dev/null 2>&1
  }
 
