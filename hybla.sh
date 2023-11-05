@@ -128,16 +128,18 @@ install_Hybla() {
     [ -z "${yn}" ] && yn="y"
     if [[ $yn == [Yy] ]]; then
         echo -e "good choice ,VPS is rebooting..."
+	sleep 2
         reboot
     fi
 }
 sysctl_config() {
     sed -i '/net.core.default_qdisc/d' /etc/sysctl.conf
     sed -i '/net.ipv4.tcp_congestion_control/d' /etc/sysctl.conf
-    echo "net.core.default_qdisc = fq" >> /etc/sysctl.conf
+    echo "net.core.default_qdisc = fq_codel" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_congestion_control = hybla" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_ecn = 2" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_frto = 2" >> /etc/sysctl.conf
+	echo "net.ipv4.ip_no_pmtu_disc = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_low_latency = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_mtu_probing = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_no_metrics_save = 1" >> /etc/sysctl.conf
@@ -146,7 +148,6 @@ sysctl_config() {
     echo "net.ipv4.tcp_timestamps = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_delack_min = 5" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_fastopen = 3" >> /etc/sysctl.conf
-    echo "net.ipv4.tcp_syncookies = 1" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_reordering = 3" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_early_retrans = 3" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_ssthresh = 32768" >> /etc/sysctl.conf
@@ -164,17 +165,29 @@ sysctl_config() {
 	echo "net.core.somaxconn = 8192" >> /etc/sysctl.conf
 	echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
 	echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
-	echo "net.core.rmem_max = 16777216" >> /etc/sysctl.conf
-    echo "net.core.wmem_max = 16777216" >> /etc/sysctl.conf
+	echo "net.core.rmem_max = 2097152" >> /etc/sysctl.conf
+    echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
+	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
     echo "net.ipv4.tcp_slow_start_after_idle = 0" >> /etc/sysctl.conf
 	echo "*               soft    nofile           1000000
 *               hard    nofile          1000000">/etc/security/limits.conf
     echo "ulimit -SHn 1000000">>/etc/profile
     sysctl -p >/dev/null 2>&1
 }
+
+cloner() {
+    echo -n > /etc/sysctl.conf
+
+    sudo sysctl -p
+    sudo sysctl --system
+
+    sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT=/#GRUB_CMDLINE_LINUX_DEFAULT=/' /etc/default/grub
+}
+
 display_menu
+cloner
 check_sys
 check_version
 install_Hybla
