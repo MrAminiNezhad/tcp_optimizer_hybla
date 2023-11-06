@@ -152,10 +152,10 @@ sysctl_config() {
 	echo "net.ipv4.tcp_rmem = 16384 262144 8388608" >> /etc/sysctl.conf
 	echo "net.ipv4.tcp_wmem = 32768 524288 16777216" >> /etc/sysctl.conf
 	echo "net.core.somaxconn = 8192" >> /etc/sysctl.conf
-	echo "net.core.rmem_default = 4194304" >> /etc/sysctl.conf
-	echo "net.core.wmem_default = 4194304" >> /etc/sysctl.conf
-	echo "net.core.rmem_max = 2097152" >> /etc/sysctl.conf
-    	echo "net.core.wmem_max = 2097152" >> /etc/sysctl.conf
+	echo "net.core.rmem_default = 2097152" >> /etc/sysctl.conf
+	echo "net.core.wmem_default = 2097152" >> /etc/sysctl.conf
+	echo "net.core.rmem_max = 16777216" >> /etc/sysctl.conf
+    	echo "net.core.wmem_max = 16777216" >> /etc/sysctl.conf
     	echo "net.ipv4.tcp_max_tw_buckets = 5000" >> /etc/sysctl.conf
     	echo "net.ipv4.tcp_max_syn_backlog = 10240" >> /etc/sysctl.conf
 	echo "net.core.netdev_max_backlog = 10240" >> /etc/sysctl.conf
