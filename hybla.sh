@@ -267,7 +267,6 @@ run_drop_caches
 cloner
 check_sys
 check_version
-install_Hybla
 sysctl_config
 save_config
 reboot_server
